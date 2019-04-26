@@ -76,6 +76,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -118,6 +120,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Models\TTTinHoc.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TTTinHoc.edmx</DependentUpon>
+      <LastGenOutput>TTTinHoc.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\TTTinHoc.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TTTinHoc.edmx</DependentUpon>
+      <LastGenOutput>TTTinHoc.cs</LastGenOutput>
+    </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Web.config" />
@@ -129,6 +141,57 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_TKB.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GV.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HV.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HV_DK_KhoaHoc.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HV_Lop.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KhoaHoc.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Lop.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NoiDungKH.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Phong.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TaiKhoan.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TKB.cs">
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTTinHoc.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTTinHoc.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTTinHoc.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTTinHoc.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TTTinHoc.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TTTinHoc.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -144,6 +207,13 @@
     <Content Include="Areas\Admin\Views\Admin\QuanLyTaiKhoan.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <EntityDeploy Include="Models\TTTinHoc.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TTTinHoc.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\TTTinHoc.edmx.diagram">
+      <DependentUpon>TTTinHoc.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -154,7 +224,10 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Models\" />
+    <Folder Include="DAO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

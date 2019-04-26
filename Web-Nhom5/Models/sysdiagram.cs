@@ -12,16 +12,12 @@ namespace Web_Nhom5.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class GV
+    public partial class sysdiagram
     {
-        public int ID { get; set; }
-        public string MaGV { get; set; }
-        public string TenGV { get; set; }
-        public string DiaChi { get; set; }
-        public string SDT { get; set; }
-        public string Email { get; set; }
-        public string GioiTinh { get; set; }
-        public string NTNS { get; set; }
-        public string HinhAnh { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }
