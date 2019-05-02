@@ -22,5 +22,6 @@ namespace Web_Nhom5.Models
         public string GioiThieu { get; set; }
         public string MucTieu { get; set; }
         public string BangCap { get; set; }
+        public string Hinh { get; set; }
     }
 }

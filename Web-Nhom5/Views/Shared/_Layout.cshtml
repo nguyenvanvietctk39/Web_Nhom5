@@ -1,14 +1,88 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link href="~/fonts/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/CSS/Home/Home.css" rel="stylesheet" />
+    <link href="~/CSS/Home/Header.css" rel="stylesheet" />
+    <link href="~/CSS/Home/Content.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.min.js"></script>
 </head>
 <body>
-    ahihi
-    <div>
-        @RenderBody()
+    <div id="header">
+        <div class="navbar" id="Topnav">
+            <a href="~/" class="active"><i class="fa fa-fw fa-home"></i>Trang chủ</a>
+            <a href="~/gioithieu">Giới thiệu</a>
+            <a href="~/lichkhaigiang">Lịch khai giảng</a>
+            <a href="~/khoahoc">Khóa học</a>
+            <a href="~/lienhe">Liên hệ</a>
+            <div class="dropdown">
+                @{
+                    var session = Session["UserName"];
+                    var flag = Session["Quyen"];//1 là admin, 2 & 3 là hv+gv.
+                }
+                @if (session == null)
+                {
+                    <button class="dropbtn">Tài khoản <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="document.getElementById('modaldangnhap').style.display = 'block'" class="active">
+                            Đăng nhập
+                        </a>
+                        <a href="#">Đăng ký</a>
+                    </div>
+                }
+                else if (flag.ToString() == "1")
+                {
+                    <button class="dropbtn">Chào: @session.ToString() <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a href="~/admin">Quản lý admin</a>
+                        <a href="~/Login/DangXuat" class="danger">Thoát</a>
+                    </div>
+                }
+                else if (flag.ToString() == "2" || flag.ToString() == "3")
+                {
+                    <button class="dropbtn">Chào: @session.ToString() <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="document.getElementById('id01').style.display='block'">
+                            Thông tin
+                        </a>
+                        <a href="#">Đổi mật khẩu</a>
+                        <a href="#">Học vụ</a>
+                        <a href="~/Login/DangXuat" class="danger">Thoát</a>
+                    </div>
+                }
+                else
+                {
+                    <button class="dropbtn">Tài khoản <i class="fa fa-caret-down"></i></button>
+                    <div class="dropdown-content">
+                        <a onclick="document.getElementById('modaldangnhap').style.display = 'block'" class="active">
+                            Đăng nhập
+                        </a>
+                        <a href="#">Đăng ký</a>
+                    </div>
+                }
+            </div>
+            <a href="#" class="icon" onclick="TopNavClick()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
     </div>
+    <!-- Body -->
+    @RenderBody()
+    <!-- End body -->
+    <div id="footer">
+        <center style="padding:15px;">Nhóm 5 pro</center>
+    </div>
+
+    <!-- Modal đăng nhập -->
+    @RenderPage("~/Views/Shared/ModalDangNhap.cshtml")
+    <!--End modal đăng nhập-->
+    <!--Modal đăng ký-->
+    <!--End modal đăng ký-->
+    <!--Modal Thông tin cá nhân-->
+    <!--End modal Thông tin cá nhân-->
+
+    <script src="~/Scripts/home.js"></script>
 </body>
 </html>

@@ -15,7 +15,7 @@ namespace Web_Nhom5.Models
     public partial class TaiKhoan
     {
         public int ID { get; set; }
-        public string TaiKhoan1 { get; set; }
+        public string TenTK { get; set; }
         public string MatKhau { get; set; }
         public Nullable<int> Quyen { get; set; }
         public string MaUser { get; set; }

@@ -1,0 +1,26 @@
+﻿<div id="modaldangnhap" class="modal">
+    <form class="modal-content animate" method="get" id="loginForm">
+        <div class="imgcontainer">
+            <span onclick="document.getElementById('modaldangnhap').style.display = 'none'" class="close" title="Close Modal">&times;</span>
+            <img class="avatar" src="~/img/logo/logo1.jpg">
+        </div>
+        <div id="msg"><ul style="color:red;"> Invalid Username Or Password</ul></div>
+        <div class="container">
+            <label for="uname"><b>Tài khoản</b></label>
+            <input type="text" placeholder="Nhập tên tài khoản.." id="fname" name="TenTK" required>
+
+            <label for="psw"><b>Mật khẩu</b></label>
+            <input type="password" placeholder="Nhập mật khẩu.." id="fpass" name="MatKhau" required>
+
+            <span class="active" type="submit" onclick="Login()" style="cursor: pointer;">Đăng nhập</span>
+            <label>
+                <input type="checkbox" checked="checked" name="remember"> Ghi nhớ
+            </label>
+        </div>
+        <div class="container">
+            <button type="button" onclick="document.getElementById('modaldangnhap').style.display = 'none'" class="cancelbtn">Hủy</button>
+            <span class="psw">Quên <a href="#">mật khẩu?</a></span>
+        </div>
+    </form>
+</div>
+

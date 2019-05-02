@@ -25,6 +25,7 @@ namespace Web_Nhom5.Areas.Admin
                 "Admin/{controller}/{action}/{id}",
                 new { action = "Index", Controller = "Admin", id = UrlParameter.Optional }
             );
+            
         }
     }
 }

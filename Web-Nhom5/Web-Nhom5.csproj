@@ -43,6 +43,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -119,7 +127,34 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AdminLTE.min.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CSS\Admin\AdminLTE.min.css" />
+    <Content Include="CSS\Admin\bootstrap.min.css" />
+    <Content Include="CSS\Admin\ionicons.min.css" />
+    <Content Include="CSS\Admin\_all-skins.min.css" />
+    <Content Include="CSS\Home\Content.css" />
+    <Content Include="CSS\Home\Home.css" />
+    <Content Include="fonts\font-awesome.min.css" />
+    <Content Include="Content\header.css" />
+    <Content Include="Content\ionicons.min.css" />
+    <Content Include="Content\_all-skins.min.css" />
+    <Content Include="CSS\Home\Header.css" />
     <Content Include="Global.asax" />
+    <Content Include="img\logo\1.jpg" />
+    <Content Include="img\logo\3.jpg" />
+    <Content Include="img\logo\logo.jpg" />
+    <Content Include="img\logo\logo1.jpg" />
+    <Content Include="img\logo\logo1.png" />
+    <Content Include="img\logo\logo2.png" />
+    <Content Include="img\logo\logo3.png" />
+    <Content Include="img\user\user1.jpg" />
+    <Content Include="img\user\user2.jpg" />
+    <Content Include="img\user\user3.jpg" />
+    <Content Include="img\user\user4.jpg" />
+    <Content Include="img\user\user5.jpg" />
+    <Content Include="img\user\user6.jpg" />
+    <Content Include="img\user\user7.jpg" />
     <Content Include="Models\TTTinHoc.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TTTinHoc.edmx</DependentUpon>
@@ -130,15 +165,23 @@
       <DependentUpon>TTTinHoc.edmx</DependentUpon>
       <LastGenOutput>TTTinHoc.cs</LastGenOutput>
     </Content>
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Scripts\adminlte.min.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\home.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
+    <Compile Include="Areas\Admin\Controllers\testController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KhoaHocController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="DAO\CheckMD5.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -214,6 +257,22 @@
     <Content Include="Models\TTTinHoc.edmx.diagram">
       <DependentUpon>TTTinHoc.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\test\Index.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\ModalDangNhap.cshtml" />
+    <Content Include="img\logo\desktop.ini" />
+    <Content Include="Views\Home\KhoaHoc.cshtml" />
+    <Content Include="Views\Home\GioiThieu.cshtml" />
+    <Content Include="Views\Home\LichKhaiGiang.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\ionicons.ttf" />
+    <Content Include="fonts\ionicons.woff" />
+    <Content Include="Views\Home\LienHe.cshtml" />
+    <Content Include="Views\Shared\SlideShow.cshtml" />
+    <Content Include="Views\Shared\ContentLeft.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -224,7 +283,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="DAO\" />
+    <Folder Include="Views\KhoaHoc\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

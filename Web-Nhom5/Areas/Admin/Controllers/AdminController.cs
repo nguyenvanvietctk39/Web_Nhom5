@@ -11,6 +11,16 @@ namespace Web_Nhom5.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            if (Session["UserName"].ToString() !="")
+            {
+                @ViewBag.Name = Session["UserName"].ToString();
+            }
+            else
+            {
+                @ViewBag.Name = "Viet";
+            }
+
+
             return View();
         }
         public ActionResult QuanLyTaiKhoan()
