@@ -1,0 +1,250 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="modal fade" id="FormAdd" role="dialog">
+    <div class="modal-dialog">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title" id="title"></h3>
+            </div>
+            <form role="form" name="formAddEdit" id="formAddEdit" method="POST">
+                <div class="box-body">
+                    <input type="hidden" id="ID" name="ID">
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="inputTenKhoaHoc">Tên khóa học</label>
+                            <input type="text" class="form-control" id="TenKhoaHoc" name="TenKhoaHoc" placeholder="Nhập tên khóa học">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputNgayKG">Ngày khai giảng</label>
+                            <input type="text" class="form-control" id="NgayKG" name="NgayKG" placeholder="Nhập ngày Khai giảng">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputHocPhi">Học phí</label>
+                            <input type="text" class="form-control" id="HocPhi" name="HocPhi" placeholder="Nhập học phí">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputSoTiet">Số tiết</label>
+                            <input type="text" class="form-control" id="SoTiet" name="SoTiet" placeholder="Nhập số tiết">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="inputGioiThieu">Giới thiệu</label>
+                            <input type="text" class="form-control" id="GioiThieu" name="GioiThieu" placeholder="Nhập giới thiệu">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputMucTieu">SDT</label>
+                            <input type="text" class="form-control" id="MucTieu" name="MucTieu" placeholder="Nhập mục tiêu">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputBangCap">Bằng cấp</label>
+                            <input type="text" class="form-control" id="BangCap" name="BangCap" placeholder="Nhập bằng cấp">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputHinh">Hình</label>
+                            <input type="text" class="form-control" id="Hinh" name="Hinh" placeholder="Nhập hình">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+
+                    </div>
+
+                </div>
+
+                <div class="box-footer">
+                    <span class="btn btn-primary" id="submit" onclick="AddOrEdit()"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Quản lý khóa học </h3>
+                <div id="thongbao" style="color:red"></div>
+                <a class="btn btn-block btn-primary" style="float: right;width:auto;" onclick="Show(0)"><i class="fa fa-plus"></i> Thêm khóa học </a>
+            </div>
+
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example" style="width:100%" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>TenKhoaHoc</th>
+                                        <th>NgayKG</th>
+                                        <th>HocPhi</th>
+                                        <th>SoTiet</th>
+                                        <th>GioiThieu</th>
+                                        <th>MucTieu</th>
+                                        <th>BangCap</th>
+                                        <th>Hinh</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/Scripts/date.format.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            dataTable = $("#example").DataTable({
+                "ajax": {
+                    "url": "/QL_KhoaHoc/GetAll",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "ID", "name": "ID" },
+                    { "data": "TenKhoaHoc", "name": "TenKhoaHoc" },
+                    {
+                        "data": "NgayKG", "name": "NgayKG",
+                        "render": function (value) {
+                            if (value === null) return "Null";
+                            var jsonDate = value;
+                            var date = new Date(parseInt(jsonDate.substr(6)));
+                            var result = date.format("dd/mm/yyyy");
+                            return result;
+                        }
+                    },
+                    { "data": "HocPhi", "name": "HocPhi" },
+                    { "data": "SoTiet", "name": "SoTiet" },
+                    { "data": "GioiThieu", "name": "GioiThieu" },
+                    { "data": "MucTieu", "name": "MucTieu" },
+                    { "data": "BangCap", "name": "BangCap" },
+                    { "data": "Hinh", "name": "Hinh" },
+                    {
+                        "data": "ID", "render": function (data) {
+                            return "<a class='btn btn-default btn-sm' onclick = Show(" + data + ")><i class='fa fa-pencil'></i>Edit</a>" +
+                                    "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>";
+                        },
+                        "orderable": false,
+                        "searchable": false,
+                        "width": "120px",
+                    }
+                ],
+                "serverSide": "true",
+                "processing": "true",
+                "info": "true",
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]], //value,name
+                "language": {
+                    "info": "Trang _PAGE_ / _PAGES_",
+                    "infoFiltered": "",
+                    "search": "Tìm kiếm: ",
+                    "lengthMenu": "Hiển thị _MENU_ dòng",
+                    "paginate": {
+                        "first": "Trang đầu",
+                        "last": "Trang cuối",
+                        "next": "Trang tiếp theo",
+                        "previous": "Trang trước"
+                    },
+
+                }
+            });
+        });
+        function Delete(id) {
+            if (confirm('Đồng ý xóa ko ?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "/QL_KhoaHoc/XoaKhoaHoc",
+                    data: { id: id },
+                    success: function (data) {
+                        if (data.success) {
+                            dataTable.ajax.reload();
+                            $("#thongbao").text(data.message);
+                        }
+                    }
+                });
+            }
+
+        };
+        function AddOrEdit(form) {
+            var dataform = $("#formAddEdit").serialize();
+
+            alert(dataform);
+                $.ajax({
+                    type: "POST",
+                    url: "/QL_KhoaHoc/ThemVaSuaKhoaHoc",
+                    data:  dataform ,
+                    success: function (data) {
+                        if (data.success) {
+                            dataTable.ajax.reload();
+                            $("#thongbao").text(data.message);
+                            $("#FormAdd").modal("hide");
+                        }
+                    }
+                });
+
+
+
+        };
+
+        //Show modal
+        function Show(ID) {
+            if (ID == 0) {
+                $("#ID").val(0); //= các id thẻ input.
+                $("#TenKhoaHoc").val("");
+                $("#NgayKG").val("");
+                $("#HocPhi").val("");
+                $("#SoTiet").val("");
+                $("#GioiThieu").val("");
+                $("#MucTieu").val("");
+                $("#BangCap").val("");
+                $("#Hinh").val("");
+                var name = "Thêm khóa học";
+                $("#submit").text(name);
+                $("#title").text(name);
+
+                //Modal them
+            }
+            else {
+                //Modal Sửa
+                $.ajax({
+                    type: "POST",
+                    url: "/QL_KhoaHoc/LayDSTheoID",
+                    data: {
+                        ID: ID
+                    },
+                    success: function (data) {
+                        alert(data.list.ID);
+                        if (data.success) {
+                            $("#ID").val(data.list.ID);
+                            $("#TenKhoaHoc").val(data.list.TenKhoaHoc);
+                            $("#NgayKG").val(data.list.NgayKG);
+                            $("#HocPhi").val(data.list.HocPhi);
+                            $("#SoTiet").val(data.list.SoTiet);
+                            $("#GioiThieu").val(data.list.GioiThieu);
+                            $("#MucTieu").val(data.list.MucTieu);
+                            $("#BangCap").val(data.list.BangCap);
+                            $("#Hinh").val(data.list.Hinh);
+                            var name = "Sửa khóa học ";
+                            $("#submit").text(name);
+                            $("#title").text(name);
+                        }
+                    }
+                });
+            }
+            $("#FormAdd").modal();
+        };
+    </script>
+}
