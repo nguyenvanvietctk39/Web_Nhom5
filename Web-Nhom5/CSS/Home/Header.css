@@ -128,20 +128,15 @@ button:hover {
 }
 
 @media (max-width: 600px) {
-    .navbar.responsive {
-        position: relative;
-        z-index: 10;
+    .navbar.responsive .icon {
+        position: absolute;
+        right: 0px;
+        top: 0px;
     }
 
-        .navbar.responsive .icon {
-            position: absolute;
-            right: 0px;
-            top: 0px;
-        }
-
-        .navbar.responsive .dropdown {
-            display: block;
-        }
+    .navbar.responsive .dropdown {
+        display: block;
+    }
 
     .navbar.responsive a {
         float: none;
@@ -153,7 +148,7 @@ button:hover {
 /*Modal dang nhap*/
 
 .close {
-    position: relative;
+    position: absolute;
     right: 25px;
     top: 0;
     color: #000;

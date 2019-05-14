@@ -53,20 +53,14 @@ function Login() {
         type: "get",
         url: "/Login/DangNhap",
         data: data,
-        success: function (data) {            
-            if (data.result) {                
-                if (data.flag=="1") {
-                    window.location.href = "/admin";
-                }
-                else {
-                    window.location.reload();
-                }
+        success: function (result) {
+            if (result == "Fail") {
+                //$("#loginForm")[0].reset();
+                $("#msg").show();
             }
             else {
-                $("#loginForm")[0].reset();
-                $("#msg").show();                
+                window.location.reload();
             }
-
         }
     })
 }
