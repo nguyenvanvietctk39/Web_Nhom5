@@ -17,7 +17,7 @@ namespace Web_Nhom5.Areas.Admin.Controllers
             }
             else
             {
-                @ViewBag.Name = "Viet";
+                @ViewBag.Name = "";
             }
 
 

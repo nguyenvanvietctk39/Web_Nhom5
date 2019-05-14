@@ -25,17 +25,20 @@ namespace Web_Nhom5.Controllers
         }
         public JsonResult DangNhap(TaiKhoan tk)
         {
-            string result = "Fail";
+            var result = false;
             var matkhau = MaHoaMD5(tk.MatKhau);
+            string flag = "";
             var DataItem = model.TaiKhoans.Where(x => x.TenTK == tk.TenTK && x.MatKhau == matkhau).SingleOrDefault();
             if (DataItem != null)
             {
+                Session["TaiKhoan"] = DataItem;
                 Session["UserID"] = DataItem.ID.ToString();
                 Session["UserName"] = DataItem.TenTK.ToString();
                 Session["Quyen"] = DataItem.Quyen.ToString();
-                result = Session["UserName"].ToString();
+                flag = DataItem.Quyen.ToString();
+                result = true;
             }
-            return Json(result, JsonRequestBehavior.AllowGet);
+            return Json(new { result, flag }, JsonRequestBehavior.AllowGet);
         }
         public ActionResult DangXuat()
         {

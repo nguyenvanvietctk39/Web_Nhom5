@@ -3,17 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Nhom 5</title>
+    <title>@ViewBag.Title</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-    <link href="~/CSS/Admin/bootstrap.min.css" rel="stylesheet" />    
-    <!-- Ionicons -->
-    <link href="~/CSS/Admin/ionicons.min.css" rel="stylesheet" />    
+    <link href="~/CSS/Admin/bootstrap.min.css" rel="stylesheet" />
     <!-- Font Awesome -->
-    <link href="~/fonts/font-awesome.min.css" rel="stylesheet" />    
+    <link href="~/fonts/font-awesome.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link href="~/CSS/Admin/ionicons.min.css" rel="stylesheet" />
     <!-- Theme style -->
-    <link href="~/CSS/Admin/AdminLTE.min.css" rel="stylesheet" />  
-    <link href="~/CSS/Admin/_all-skins.min.css" rel="stylesheet" />      
+    <link href="~/CSS/Admin/AdminLTE.min.css" rel="stylesheet" />
+    <link href="~/CSS/Admin/_all-skins.min.css" rel="stylesheet" />
+    <link href="~/CSS/Admin/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/CSS/Admin/sweetalert2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert2.min.js"></script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
@@ -148,7 +151,9 @@
 
         <!-- Content Righttttttttttttt -->
         <div class="content-wrapper">
-            @RenderBody()
+            <section class="content">
+                @RenderBody()
+            </section>
         </div>
         <!-- /.content-wrapper -->
         <!-- Footer -->
@@ -165,9 +170,6 @@
     <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/adminlte.min.js"></script>
-    @*<script src="~/Scripts/jquery.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/adminlte.min.js"></script>*@
     @RenderSection("scripts", required: false)
 </body>
 </html>
