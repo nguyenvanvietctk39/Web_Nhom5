@@ -1,0 +1,251 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal fade" id="FormAdd" role="dialog">
+    <div class="modal-dialog">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title" id="title"></h3>
+            </div>
+            <form role="form" name="formAddEdit" id="formAddEdit" method="POST">
+                <div class="box-body">
+                    <input type="hidden" id="ID" name="ID">
+
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="inputMaSP">Mã giáo viên</label>
+                            <input type="text" class="form-control" name="MaGV" id="MaGV" placeholder="Nhập mã giáo viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputTenSP">Tên giáo viên</label>
+                            <input type="text" class="form-control" name="TenGV" id="TenGV" placeholder="Nhập tên giáo viên">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGiaSP">Địa Chỉ</label>
+                            <input type="text" class="form-control" name="DiaChi" id="DiaChi" placeholder="địa chỉ">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGiaBSP">SDT</label>
+                            <input type="text" class="form-control" name="SDT" id="SDT" placeholder="Nhập số điện thoại">
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group">
+                            <label for="inputGiaBSP">Email</label>
+                            <input type="text" class="form-control" name="Email" id="Email" placeholder="Nhập Email">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGiaBSP">Giới Tính</label>
+                            <input type="text" class="form-control" name="GioiTinh" id="GioiTinh" placeholder="Nhập giới tính">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGiaBSP">NTNS</label>
+                            <input type="text" class="form-control" name="NTNS" id="NTNS" placeholder="Nhập ngày tháng năm sinh">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputGiaBSP">Hình ảnh</label>
+                            <input type="text" class="form-control" name="HinhAnh" id="HinhAnh" placeholder="Nhập hình ảnh">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="box-footer">
+                    <span class="btn btn-primary" id="submit" onclick="AddOrEdit()"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Quản lý giáo viên</h3>
+                <div id="thongbao" style="color:red"></div>
+                <a class="btn btn-block btn-primary" style="float: right;width:auto;" onclick="Show(0)"><i class="fa fa-plus"></i> Thêm giáo viên </a>
+            </div>
+            <div class="box-body">
+                <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <div class="row">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-6"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table id="example" style="width:100%" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Tên</th>
+                                        <th>Địa Chỉ</th>
+                                        <th>SDT</th>
+                                        <th>Email</th>
+                                        <th>Giới Tính</th>
+                                        <th>NTNS</th>
+                                        <th>Ảnh</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="//cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.6/semantic.min.css" rel="stylesheet" />
+@section scripts{
+    <script src="~/Scripts/date.format.js"></script>
+    <script src="//cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            dataTable = $("#example").DataTable({
+                "ajax": {
+                    "url": "/QLGiaoVien/DataTable",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+                "columns": [
+                    { "data": "MaGV", "name": "MaGV" },
+                    { "data": "TenGV", "name": "TenGV" },
+                    { "data": "DiaChi", "name": "DiaChi" },
+                    { "data": "SDT", "name": "SDT" },
+                    { "data": "Email", "name": "Email" },
+                    { "data": "GioiTinh", "name": "GioiTinh" },
+                    {
+                        "data": "NTNS", "name": "NTNS"
+                    },
+
+                    { "data": "HinhAnh", "name": "HinhAnh" },
+                     {
+                         "data": "ID", "render": function (data) {
+                             return "<a class='btn btn-default btn-sm' onclick = Show(" + data + ")><i class='fa fa-pencil'></i>Edit</a>" +
+                                     "<a class='btn btn-danger btn-sm' style='margin-left:5px' onclick=Delete(" + data + ")><i class='fa fa-trash'></i> Delete</a>";
+                         },
+                         "orderable": false,
+                         "searchable": false,
+                         "width": "160px",
+                     }
+
+                ],
+                "serverSide": "true",
+                "processing": "true",
+                "info": "true",
+                "pagingType": "full_numbers",
+                "lengthMenu": [[10, 20, 30, -1], [10, 20, 30, "All"]], //value,name
+                "language": {
+                    "info": "Trang _PAGE_ / _PAGES_",
+                    "infoFiltered": " (Tổng : _MAX_ dòng)",
+                    "search": "Tìm kiếm: ",
+                    "lengthMenu": "Hiển thị _MENU_ dòng",
+                    "paginate": {
+                        "first": "Trang đầu",
+                        "last": "Trang cuối",
+                        "next": "Trang tiếp theo",
+                        "previous": "Trang trước"
+                    },
+
+                }
+            });
+        });
+
+        function AddOrEdit() {
+            var dataform = $("#formAddEdit").serialize();//Form.serialize() giúp lấy tất cả dữ liệu của thẻ input trên form
+            //alert("Viet");
+            //var a = $("#MaGV").val();
+            //alert(a);
+            alert(dataform);
+            $.ajax({
+                url: "/QLGiaoVien/AddOrEdit",
+                type: "POST",
+                data: dataform,
+                success: function (data) {
+                    if (data.success) {
+                        dataTable.ajax.reload();
+                        $('#thongbao').text(data.message);
+                        $("#FormAdd").modal("hide");//khi thêm xong thì cái ẩn model đi và load dữ liệu
+                    }
+                }
+            });
+        };
+        function Delete(id) {
+            if (confirm('Đồng ý xóa ko ?')) {
+                $.ajax({
+                    type: "POST",
+                    url: "/QLGiaoVien/XoaGV",
+                    data: { id: id },
+                    success: function (data) {
+                        if (data.success) {
+                            dataTable.ajax.reload();
+                            $("#thongbao").text(data.message);
+                        }
+                    }
+                });
+            }
+        };
+        function Show(ID) {
+            if (ID == 0) {
+                $("#ID").val(0); //= các id thẻ input.
+                $("#MaGV").val("");
+                $("#TenGV").val("");
+                $("#DiaChi").val("");
+                $("#SDT").val("");
+                $("#Email").val("");
+                $("#GioiTinh").val("");
+                //$("#NTNS").val("");
+                $("#HinhAnh").val("");
+                var name = "Thêm giáo viên";
+                $("#submit").text(name);
+                $("#title").text(name);
+
+                //Modal them
+            }
+            else {
+                //Modal Sửa
+                $.ajax({
+                    type: "POST",
+                    url: "/QLGiaoVien/LayDSTheoID",
+                    data: {
+                        ID: ID
+                    },
+                    success: function (data) {
+                        alert(data.list.ID);
+                        if (data.success) {
+                            $("#ID").val(data.list.ID);
+                            $("#MaGV").val(data.list.MaGV);
+                            $("#TenGV").val(data.list.TenGV);
+                            $("#DiaChi").val(data.list.DiaChi);
+                            $("#SDT").val(data.list.SDT);
+                            $("#Email").val(data.list.Email);
+                            $("#GioiTinh").val(data.list.GioiTinh);
+                            //$("#NTNS").val("");
+
+                            $("#HinhAnh").val(data.list.HinhAnh);
+                            var name = "Sửa giáo viên";
+                            $("#submit").text(name);
+                            $("#title").text(name);
+                        }
+                    }
+                });
+            }
+            $("#FormAdd").modal();
+        };
+    </script>
+}
+
+
+
+
+
+
+
+
+

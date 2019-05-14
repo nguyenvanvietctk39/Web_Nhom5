@@ -161,9 +161,13 @@
         <!--End footer-->
     </div>
 
-
     <script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
     <script src="~/Scripts/adminlte.min.js"></script>
+    @*<script src="~/Scripts/jquery.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/adminlte.min.js"></script>*@
+    @RenderSection("scripts", required: false)
 </body>
 </html>
