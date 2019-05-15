@@ -188,7 +188,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\QLGiaoVienController.cs" />
-    <Compile Include="Areas\Admin\Controllers\QLKhoaHocController.cs" />
+    <Compile Include="Areas\Admin\Controllers\QL_KhoaHocController.cs" />
     <Compile Include="Areas\Admin\Controllers\testController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KhoaHocController.cs" />
@@ -296,7 +296,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\QLKhoaHoc\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
