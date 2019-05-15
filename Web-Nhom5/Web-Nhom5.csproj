@@ -286,11 +286,8 @@
     <Content Include="Views\Shared\SlideShow.cshtml" />
     <Content Include="Views\Shared\ContentLeft.cshtml" />
     <Content Include="Areas\Admin\Views\QLGiaoVien\Index.cshtml" />
-<<<<<<< HEAD
-    <Content Include="Areas\Admin\Views\Lop\Index.cshtml" />
-=======
     <Content Include="Areas\Admin\Views\QL_KhoaHoc\Index.cshtml" />
->>>>>>> master
+    <Content Include="Areas\Admin\Views\Lop\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
